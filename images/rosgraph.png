@@ -1,0 +1,154 @@
+digraph graphname {
+	graph [bb="0,0,914,174",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_joy_teleop {
+		graph [bb="240,8,356,83",
+			compound=True,
+			label=joy_teleop,
+			lheight=0.21,
+			lp="298,71.5",
+			lwidth=0.81,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__joy_teleop		 [URL=_joy_teleop,
+			height=0.5,
+			label="/joy_teleop",
+			pos="298,34",
+			shape=ellipse,
+			tooltip="/joy_teleop",
+			width=1.3902];
+	}
+	subgraph cluster_robot_state_publisher {
+		graph [bb="8,91,202,166",
+			compound=True,
+			label=robot_state_publisher,
+			lheight=0.21,
+			lp="105,154.5",
+			lwidth=1.64,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__robot_state_publisher		 [URL=_robot_state_publisher,
+			height=0.5,
+			label="/robot_state_publisher",
+			pos="105,117",
+			shape=ellipse,
+			tooltip="/robot_state_publisher",
+			width=2.4734];
+	}
+	subgraph cluster_pid_control {
+		graph [bb="424,8,548,83",
+			compound=True,
+			label=pid_control,
+			lheight=0.21,
+			lp="486,71.5",
+			lwidth=0.88,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__pid_control		 [URL=_pid_control,
+			height=0.5,
+			label="/pid_control",
+			pos="486,34",
+			shape=ellipse,
+			tooltip="/pid_control",
+			width=1.4985];
+	}
+	subgraph cluster_p3d2nav {
+		graph [bb="802,28,906,103",
+			compound=True,
+			label=p3d2nav,
+			lheight=0.21,
+			lp="854,91.5",
+			lwidth=0.65,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__p3d2nav		 [URL=_p3d2nav,
+			height=0.5,
+			label="/p3d2nav",
+			pos="854,54",
+			shape=ellipse,
+			tooltip="/p3d2nav",
+			width=1.2096];
+	}
+	subgraph cluster_joy {
+		graph [bb="70,8,140,83",
+			compound=True,
+			label=joy,
+			lheight=0.21,
+			lp="105,71.5",
+			lwidth=0.25,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__joy		 [URL=_joy,
+			height=0.5,
+			label="/joy",
+			pos="105,34",
+			shape=ellipse,
+			tooltip="/joy",
+			width=0.75];
+	}
+	subgraph cluster_gazebo {
+		graph [bb="628,41,722,116",
+			compound=True,
+			label=gazebo,
+			lheight=0.21,
+			lp="675,104.5",
+			lwidth=0.54,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__gazebo		 [URL=_gazebo,
+			height=0.5,
+			label="/gazebo",
+			pos="675,67",
+			shape=ellipse,
+			tooltip="/gazebo",
+			width=1.0652];
+	}
+	n__joy_teleop -> n__pid_control	 [URL=topic_3A_cmd_vel,
+		label="/cmd_vel",
+		lp="390,41.5",
+		penwidth=1,
+		pos="e,431.82,34 348.36,34 370.86,34 397.78,34 421.75,34"];
+	n__pid_control -> n__gazebo	 [URL=topic_3A_cmd_drive,
+		label="/cmd_drive",
+		lp="588,64.5",
+		penwidth=1,
+		pos="e,638.93,60.811 534.19,42.327 563.19,47.446 600.15,53.968 628.79,59.021"];
+	n__p3d2nav -> n__pid_control	 [URL=topic_3A_nav_odom,
+		label="/nav_odom",
+		lp="675,29.5",
+		penwidth=1,
+		pos="e,535.77,26.68 818.94,43.298 792.74,35.65 755.47,26.029 722,22 662.3,14.814 593.56,19.859 545.91,25.446"];
+	n__joy -> n__joy_teleop	 [URL=topic_3A_joy,
+		label="/joy",
+		lp="221,41.5",
+		penwidth=1,
+		pos="e,247.61,34 132.16,34 159.12,34 202.1,34 237.4,34"];
+	n__gazebo -> n__p3d2nav	 [URL=topic_3A_p3d_odom,
+		label="/p3d_odom",
+		lp="762,69.5",
+		penwidth=1,
+		pos="e,810.98,57.086 713.11,64.275 738.57,62.405 772.71,59.897 800.89,57.827"];
+}
